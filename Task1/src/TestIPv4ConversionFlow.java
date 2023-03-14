@@ -16,7 +16,7 @@ public class TestIPv4ConversionFlow implements AutoCloseable {
         bufferedReader.close();
     }
 
-    public void entrypoint() {
+    public void entrypoint() throws IOException{
         while (true) {
             System.out.print("""
                     Choose the action:
@@ -32,7 +32,7 @@ public class TestIPv4ConversionFlow implements AutoCloseable {
                 }
             } catch (NumberFormatException ex) {
                 System.err.println("Wrong input: " + ex.getMessage());
-            } catch (IOException | IPv4Converter.IPv4ConverterException ex) {
+            } catch (IPv4Converter.IPv4ConverterException ex) {
                 System.err.println(ex.getMessage());
             }
         }
