@@ -1,4 +1,4 @@
-package CsvModels;
+package A1.data.models.csvModels;
 
 import com.opencsv.bean.CsvBindByName;
 
@@ -66,3 +66,4 @@ public class RawCsvLogin {
                 application, appAccountName, isActive, jobTitle, department);
     }
 }
+

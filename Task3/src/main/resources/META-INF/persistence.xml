@@ -1,0 +1,26 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+    <persistence-unit
+            name="company_unit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>A1.data.models.dbEntities.Job</class>
+        <class>A1.data.models.dbEntities.Department</class>
+        <class>A1.data.models.dbEntities.Application</class>
+        <class>A1.data.models.dbEntities.Account</class>
+        <class>A1.data.models.dbEntities.Product</class>
+        <class>A1.data.models.dbEntities.Posting</class>
+        <class>A1.data.models.dbEntities.PostedProduct</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost/A1Company"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="venediktov03" />
+            <property name="javax.persistence.jdbc.driver"
+                      value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

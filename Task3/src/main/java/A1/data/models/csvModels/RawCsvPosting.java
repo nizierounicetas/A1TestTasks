@@ -1,11 +1,9 @@
-package CsvModels;
+package A1.data.models.csvModels;
 
 import com.opencsv.bean.CsvBindByName;
-import com.opencsv.bean.CsvDate;
-import com.opencsv.bean.CsvNumber;
+import com.opencsv.bean.CsvIgnore;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 public class RawCsvPosting {
 
@@ -38,6 +36,13 @@ public class RawCsvPosting {
 
     @CsvBindByName(column = "User Name")
     private String userName;
+
+    @CsvIgnore
+    private boolean isAuthorized;
+
+    public boolean getIsAuthorized() {
+        return isAuthorized;
+    }
 
     public String getMatDoc() {
         return matDoc;
@@ -115,10 +120,21 @@ public class RawCsvPosting {
         this.userName = userName;
     }
 
+    public void setIsAuthorized(List<RawCsvLogin> logins) {
+        for(RawCsvLogin login : logins)
+            if (this.userName.trim().equals(login.getAppAccountName().trim()) &&
+                    Boolean.parseBoolean(login.getIsActive().trim())) {
+                this.isAuthorized = true;
+                return;
+            }
+        this.isAuthorized = true;
+    }
+
     @Override
     public String toString() {
         return String.format("Mat. Doc.: %s; Item: %s; Doc. Date: %s; Pstng Date: %s; Material Description: %s; " +
-                "Quantity: %s, BUn: %s; Amount LC: %s; Crcy: %s; User Name: %s",
-                matDoc, item, docDate, postingDate, materialDescription, quantity, bun, amountLc, currency, userName);
+                        "Quantity: %s, BUn: %s; Amount LC: %s; Crcy: %s; User Name: %s; is Authorized: %b",
+                matDoc, item, docDate, postingDate, materialDescription, quantity, bun, amountLc, currency, userName, isAuthorized);
     }
 }
+
